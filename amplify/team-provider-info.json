@@ -10,6 +10,20 @@
       "StackName": "amplify-solace-dev-143151",
       "StackId": "arn:aws:cloudformation:ap-south-1:047805788102:stack/amplify-solace-dev-143151/d4ef2290-e373-11ee-b550-06859283fa06",
       "AmplifyAppId": "dyqfaph0z2eoc"
+    },
+    "categories": {
+      "auth": {
+        "solace9d8870dc": {}
+      },
+      "function": {
+        "S3Trigger24ede175": {
+          "deploymentBucketName": "amplify-solace-dev-143151-deployment",
+          "s3Key": "amplify-builds/S3Trigger24ede175-41394e3448554f364c68-build.zip"
+        }
+      },
+      "storage": {
+        "bookStore": {}
+      }
     }
   }
 }
