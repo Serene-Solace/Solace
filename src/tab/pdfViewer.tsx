@@ -4,7 +4,7 @@ import { pdfjs, Document, Page } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-import '../Sample.css';
+import '../css/Sample.css';
 
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 
@@ -21,8 +21,6 @@ const options = {
 const resizeObserverOptions = {};
 
 const maxWidth = 800;
-
-type PDFFile = string | File | null;
 
 type ChildProps = {
   items: any
@@ -53,7 +51,7 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
   }, []);
 
   function handleMouseUp(): void {
-    console.log(`Selected text: ${window.getSelection().toString()}`);
+    console.log(`Selected text: ${window.getSelection()?.toString()}`);
   }
 
   return (

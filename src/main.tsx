@@ -4,7 +4,7 @@ import App from './App.tsx'
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from './amplifyconfiguration.json';
 Amplify.configure(amplifyconfig);
-import "./styles.css";
+import "./css/styles.css";
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';

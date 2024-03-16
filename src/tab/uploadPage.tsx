@@ -5,7 +5,6 @@ import {
   Flex,
   View,
 } from "@aws-amplify/ui-react";
-import { Document, Page } from 'react-pdf';
 import PDFViewer from './pdfViewer';
 
 const UploadPage: React.FC = () => {
