@@ -35,21 +35,24 @@ const UploadPage: React.FC = () => {
 
   return (
     <div>
-      <h2>Upload Page</h2>
-      <View as="form" margin="3rem 0" onSubmit={uploadBook}>
-        <Flex direction="row" justifyContent="center">
-          <View
-            name="select-book"
-            as="input"
-            type="file"
-            style={{ alignSelf: "end" }}
-          />
-          <Button type="submit" variation="primary">
-            Upload Book
-          </Button>
-        </Flex>
-      </View>
+      {!fileUrl && (
       <div>
+        <h2>Upload Page</h2>
+        <View as="form" margin="3rem 0" onSubmit={uploadBook}>
+          <Flex direction="row" justifyContent="center">
+            <View
+              name="select-book"
+              as="input"
+              type="file"
+              style={{ alignSelf: "end" }}
+            />
+            <Button type="submit" variation="primary">
+              Upload Book
+            </Button>
+          </Flex>
+        </View>
+      </div>
+      )}
       {fileUrl && (
         <div>
           <div style={{display:"flex"}}>
@@ -57,18 +60,11 @@ const UploadPage: React.FC = () => {
                       title="S3 Content"
                       src={fileUrl}
                       width="100%"
-                      height="1000px"
+                      height="600px"
               ></iframe>
-              <iframe
-                        title="S3 Content"
-                        src={fileUrl}
-                        width="100%"
-                        height="1000px"
-                ></iframe>
               </div>
         </div>
       )}
-    </div>
     </div>
   );
 };
