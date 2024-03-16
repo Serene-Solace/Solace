@@ -4,16 +4,24 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build": "tsc && vite build && yarn copy && react-scripts build",
+    "copy": "yarn copy-cmaps && yarn copy-standard-fonts && yarn copy-worker",
+    "copy-cmaps": "node --loader ts-node/esm ./scripts/copy-cmaps.ts",
+    "copy-standard-fonts": "node --loader ts-node/esm ./scripts/copy-standard-fonts.ts",
+    "copy-worker": "node --loader ts-node/esm ./scripts/copy-worker.ts",
+    "dev": "vite && yarn copy && react-scripts start",
+    "eject": "react-scripts eject",
+    "test": "react-scripts test"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^6.1.6",
+    "@wojtekmaj/react-hooks": "^1.19.0",
     "aws-amplify": "^6.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-pdf": "^7.7.1",
     "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
@@ -22,11 +30,13 @@
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "copy-webpack-plugin": "^12.0.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "react-router-dom": "^5.3.4",
     "typescript": "^5.2.2",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "vite-plugin-static-copy": "^1.0.1"
   }
 }

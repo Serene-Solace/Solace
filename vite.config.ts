@@ -1,7 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import path from 'node:path';
+import { createRequire } from 'node:module';
 
-// https://vitejs.dev/config/
+import { defineConfig, normalizePath } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+const require = createRequire(import.meta.url);
+const cMapsDir = normalizePath(
+  path.join(path.dirname(require.resolve('pdfjs-dist/package.json')), 'cmaps')
+);
+
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [
+   viteStaticCopy({
+     targets: [
+       {
+         src: cMapsDir,
+         dest: '',
+       },
+     ],
+   }),
+  ]
+});
