@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-solace-dev-143151-authRole",
+      "UnauthRoleArn": "arn:aws:iam::047805788102:role/amplify-solace-dev-143151-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::047805788102:role/amplify-solace-dev-143151-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-solace-dev-143151-deployment",
+      "UnauthRoleName": "amplify-solace-dev-143151-unauthRole",
+      "StackName": "amplify-solace-dev-143151",
+      "StackId": "arn:aws:cloudformation:ap-south-1:047805788102:stack/amplify-solace-dev-143151/d4ef2290-e373-11ee-b550-06859283fa06",
+      "AmplifyAppId": "dyqfaph0z2eoc"
+    }
+  }
+}
