@@ -1,4 +1,3 @@
-import './Home.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import UploadPage from './tab/uploadPage.tsx'
 import { withAuthenticator, Button, Heading } from '@aws-amplify/ui-react';
@@ -17,10 +16,14 @@ type AppProps = {
 const App: React.FC<AppProps> = ({signOut, user}) => {
   return (
     <Router>
+      <div className="nav">
+      <Navbar />
+        <ul>
+          <li>Hello, <a href="#">{user.username}</a></li>
+          <li><Button onClick={signOut}>Sign out</Button></li>
+        </ul>
+      </div>
       <div>
-        <Navbar />
-        <Heading level={1}>Hello {user.username}</Heading>
-        <Button onClick={signOut}>Sign out</Button>
         <Switch>
           <Route exact path="/about">
             <About />
