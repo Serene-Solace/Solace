@@ -19,7 +19,6 @@ const App: React.FC<AppProps> = ({signOut, user}) => {
       <div className="nav">
       <Navbar />
         <ul>
-          <li>Hello, <a href="#">{user.username}</a></li>
           <li><Button onClick={signOut}>Sign out</Button></li>
         </ul>
       </div>

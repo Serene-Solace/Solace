@@ -1,0 +1,25 @@
+.image-with-text {
+    width: 100vw; /* 100% width of the viewport */
+    height: 70vh; /* 40% height of the viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  
+  .background-image {
+    max-width: 100%; /* Ensure the image does not exceed the container width */
+    max-height: 100%; 
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 10px 20px;
+  }
