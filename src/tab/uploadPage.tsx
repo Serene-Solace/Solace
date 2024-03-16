@@ -5,15 +5,19 @@ import {
   Flex,
   View,
 } from "@aws-amplify/ui-react";
+import { Document, Page } from 'react-pdf';
+import PDFViewer from './pdfViewer';
 
 const UploadPage: React.FC = () => {
 
   const [fileUrl, setFileUrl] = useState<any>(null);
+  const [_file, setFile] = useState<any>(null);
 
   const uploadBook = async (event: any) => {
     event.preventDefault();
     const form = new FormData(event.target);
     const file = form.get("select-book");
+    setFile(file);
     console.log(file);
     if (file) {
       try {
@@ -55,14 +59,7 @@ const UploadPage: React.FC = () => {
       )}
       {fileUrl && (
         <div>
-          <div style={{display:"flex"}}>
-              <iframe
-                      title="S3 Content"
-                      src={fileUrl}
-                      width="100%"
-                      height="600px"
-              ></iframe>
-              </div>
+          <PDFViewer file={_file} />
         </div>
       )}
     </div>
