@@ -1,0 +1,14 @@
+{
+  "resourceName": "bookStore",
+  "policyUUID": "a19a0316",
+  "bucketName": "book-store",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger24ede175",
+  "groupAccess": {}
+}
