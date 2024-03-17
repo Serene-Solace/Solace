@@ -3,17 +3,26 @@ import { useResizeObserver } from '@wojtekmaj/react-hooks';
 import { pdfjs, Document, Page } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
-import AWS from 'aws-sdk';
+import {Lambda, Credentials} from 'aws-sdk';
 
 import '../css/Sample.css';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import Toolbar from './toolBar';
 import { View } from '@aws-amplify/ui-react';
 
-AWS.config.update({
-  region: 'ap-south-1', // e.g., 'us-east-1'
-  credentials: new AWS.Credentials(import.meta.env.VITE_AWS_ACCESS_KEY_ID, import.meta.env.VITE_AWS_ACCESS_KEY_SECRET),
-});
+// AWS.config.update({
+//   region: 'ap-south-1', // e.g., 'us-east-1'
+//   credentials: new AWS.Credentials(import.meta.env.VITE_AWS_ACCESS_KEY_ID, import.meta.env.VITE_AWS_ACCESS_KEY_SECRET),
+// });
+
+const credentials = new Credentials({
+  accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID, 
+  secretAccessKey: import.meta.env.VITE_AWS_ACCESS_KEY_SECRET
+})
+
+const region = 'ap-south-1';
+
+const lambda = new Lambda({ credentials, region });
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
@@ -140,7 +149,6 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
   const invokeLambda = () => {
     setIsLoading(true);
     console.log("Inside the function");
-    const lambda = new AWS.Lambda();
     const params = {
       FunctionName: "openai_invoke_api",
       Payload: JSON.stringify({
