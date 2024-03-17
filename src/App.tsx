@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import UploadPage from './tab/uploadPage.tsx'
-import { withAuthenticator, Button, Heading } from '@aws-amplify/ui-react';
+import { withAuthenticator, Button } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { type AuthUser } from "aws-amplify/auth";
 import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
@@ -19,7 +19,7 @@ const App: React.FC<AppProps> = ({signOut, user}) => {
       <div className="nav">
       <Navbar />
         <ul>
-          <li>Hello, <a href="#">{user.username}</a></li>
+          <li>Hello, <a href="#">{user?.username}</a></li>
           <li><Button onClick={signOut}>Sign out</Button></li>
         </ul>
       </div>
