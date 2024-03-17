@@ -31,6 +31,15 @@ body {
     margin: 10px 0;
     padding: 10px;
   }
+
+  .Example__container_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    pointer-events: none
+  }
   
   .Example__container__load {
     margin-top: 1em;
@@ -57,4 +66,8 @@ body {
   .Example__container__document .react-pdf__message {
     padding: 20px;
     color: white;
+  }
+
+  .butt {
+    color: red;
   }
