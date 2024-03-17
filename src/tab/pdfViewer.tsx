@@ -172,8 +172,9 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
             onLoadSuccess={onDocumentLoadSuccess} 
             onItemClick={onItemClick}
             options={options}>
-            //@ts-ignore
-            {Array.from(new Array(numPages), (el, index) => (
+            {Array.from(new Array(numPages), 
+            // @ts-ignore 
+              (el, index) => (
               <Page
                 key={`page_${index + 1}`}
                 pageNumber={index + 1}
