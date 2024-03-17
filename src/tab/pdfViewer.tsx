@@ -3,7 +3,7 @@ import { useResizeObserver } from '@wojtekmaj/react-hooks';
 import { pdfjs, Document, Page } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
-import {Lambda, Credentials} from 'aws-sdk';
+// import {Lambda, Credentials} from 'aws-sdk';
 
 import '../css/Sample.css';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
@@ -15,14 +15,14 @@ import { View } from '@aws-amplify/ui-react';
 //   credentials: new AWS.Credentials(import.meta.env.VITE_AWS_ACCESS_KEY_ID, import.meta.env.VITE_AWS_ACCESS_KEY_SECRET),
 // });
 
-const credentials = new Credentials({
-  accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID, 
-  secretAccessKey: import.meta.env.VITE_AWS_ACCESS_KEY_SECRET
-})
+// const credentials = new Credentials({
+//   accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID, 
+//   secretAccessKey: import.meta.env.VITE_AWS_ACCESS_KEY_SECRET
+// })
 
-const region = 'ap-south-1';
+// const region = 'ap-south-1';
 
-const lambda = new Lambda({ credentials, region });
+// const lambda = new Lambda({ credentials, region });
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
@@ -149,24 +149,24 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
   const invokeLambda = () => {
     setIsLoading(true);
     console.log("Inside the function");
-    const params = {
-      FunctionName: "openai_invoke_api",
-      Payload: JSON.stringify({
-        text: selectedText,
-      }),
-    };
+    // const params = {
+    //   FunctionName: "openai_invoke_api",
+    //   Payload: JSON.stringify({
+    //     text: selectedText,
+    //   }),
+    // };
 
-    lambda.invoke(params, (err, data) => {
-      if (err) {
-        console.error('Error invoking Lambda function:', err);
-      } else {
-        console.log('Lambda function invoked successfully:', data);
-        if (data.Payload != undefined) {
-          setResult(JSON.parse(data.Payload.toString())["body"]["response"]);
-        }
-      }
-      setIsLoading(false);
-    });
+    // lambda.invoke(params, (err, data) => {
+    //   if (err) {
+    //     console.error('Error invoking Lambda function:', err);
+    //   } else {
+    //     console.log('Lambda function invoked successfully:', data);
+    //     if (data.Payload != undefined) {
+    //       setResult(JSON.parse(data.Payload.toString())["body"]["response"]);
+    //     }
+    //   }
+    //   setIsLoading(false);
+    // });
   };
 
   return (
