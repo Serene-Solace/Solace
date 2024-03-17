@@ -30,7 +30,7 @@ const resizeObserverOptions = {};
 const maxWidth = 800;
 
 type ChildProps = {
-  items: any
+  file: any
  }
 
 const PDFViewer: React.FC<ChildProps> = (props) => {
@@ -153,9 +153,11 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
         console.error('Error invoking Lambda function:', err);
       } else {
         console.log('Lambda function invoked successfully:', data);
-        setResult(JSON.parse(data.Payload)["body"]["response"]);
-        setIsLoading(false);
+        if (data.Payload != undefined) {
+          setResult(JSON.parse(data.Payload.toString())["body"]["response"]);
+        }
       }
+      setIsLoading(false);
     });
   };
 

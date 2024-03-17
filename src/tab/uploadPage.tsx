@@ -17,8 +17,7 @@ const UploadPage: React.FC = () => {
     const form = new FormData(event.target);
     const file = form.get("select-book");
     setFile(file);
-    console.log(file);
-    if (file) {
+    if (file instanceof File) {
       try {
         const result = await uploadData({
           key: file.name,
