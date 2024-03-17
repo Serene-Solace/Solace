@@ -1,4 +1,4 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Navbar() {
  return (
@@ -12,7 +12,7 @@ function Navbar() {
  );
 }
 
-function CustomLink({ to, children, ...props }) {
+function CustomLink({ to, children, ...props } : {to:any, children:any}) {
   
     return (
       <li>
