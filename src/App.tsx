@@ -6,6 +6,7 @@ import { type AuthUser } from "aws-amplify/auth";
 import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
 import React from 'react';
 import Navbar from "./Navbar.tsx";
+import Footbar from "./Footbar.tsx";
 import About from "./tab/about.tsx";
 
 type AppProps = {
@@ -17,7 +18,7 @@ const App: React.FC<AppProps> = ({signOut, user}) => {
   return (
     <Router>
       <div className="nav">
-      <Navbar />
+        <Navbar />
         <ul>
           <li><Button onClick={signOut}>Sign out</Button></li>
         </ul>
@@ -32,6 +33,7 @@ const App: React.FC<AppProps> = ({signOut, user}) => {
           </Route>
         </Switch>
       </div>
+      <Footbar />
     </Router>
   )
 }

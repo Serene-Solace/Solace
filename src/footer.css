@@ -1,0 +1,38 @@
+
+.footer {
+    background-color: #EFF4F8;
+    padding: 1rem;
+    width: 100%;
+    height: 20%;
+    margin-top: 75%;
+    display: flex;
+}
+
+.footbar-logo {
+    margin-left: 44px;
+}
+
+.footer p {
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 44px;
+    margin-top: 5px;
+}
+
+.footer ul {
+    margin-top: 20px;
+    list-style: none;
+    margin-left: 5px;
+    padding-left: 38px;
+}
+
+.footer li {
+    text-decoration: none;
+    display: block;
+}
+
+.quick {
+    margin-left: 50%;
+    margin-top: 0%;
+    font-size: 20px;
+}
