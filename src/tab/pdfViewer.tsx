@@ -3,26 +3,11 @@ import { useResizeObserver } from '@wojtekmaj/react-hooks';
 import { pdfjs, Document, Page } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
-// import {Lambda, Credentials} from 'aws-sdk';
 
 import '../css/Sample.css';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import Toolbar from './toolBar';
 import { View } from '@aws-amplify/ui-react';
-
-// AWS.config.update({
-//   region: 'ap-south-1', // e.g., 'us-east-1'
-//   credentials: new AWS.Credentials(import.meta.env.VITE_AWS_ACCESS_KEY_ID, import.meta.env.VITE_AWS_ACCESS_KEY_SECRET),
-// });
-
-// const credentials = new Credentials({
-//   accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID, 
-//   secretAccessKey: import.meta.env.VITE_AWS_ACCESS_KEY_SECRET
-// })
-
-// const region = 'ap-south-1';
-
-// const lambda = new Lambda({ credentials, region });
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
@@ -61,8 +46,6 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
           x: range.right,
           y: range.bottom,
         });
-        // console.log(selection);
-        // console.log(selection.toString());
         setSelectedText(selection.toString().trim());
       } else {
         setSelectedText('');
@@ -142,31 +125,30 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
     if (selectedText?.trim() != "") {
       console.log(`Selected text: ${selectedText}`);
       setSelectedText(selectedText);
-      // invokeLambda();
     }
   }
 
-  const invokeLambda = () => {
+  const invokeLambda = async () => {
     setIsLoading(true);
     console.log("Inside the function");
-    // const params = {
-    //   FunctionName: "openai_invoke_api",
-    //   Payload: JSON.stringify({
-    //     text: selectedText,
-    //   }),
-    // };
-
-    // lambda.invoke(params, (err, data) => {
-    //   if (err) {
-    //     console.error('Error invoking Lambda function:', err);
-    //   } else {
-    //     console.log('Lambda function invoked successfully:', data);
-    //     if (data.Payload != undefined) {
-    //       setResult(JSON.parse(data.Payload.toString())["body"]["response"]);
-    //     }
-    //   }
-    //   setIsLoading(false);
-    // });
+    try {
+      const apiKey = import.meta.env.VITE_API_GATEWAY_KEY_ID;
+      const response = await fetch('https://kahou06ob0.execute-api.ap-south-1.amazonaws.com/default/openai_invoke_api', {
+        method: 'POST',
+        headers: {
+          'x-api-key': apiKey,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          text: selectedText,
+        })
+      });
+      const data = await response.json();
+      setResult(data['body']['response']);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+    setIsLoading(false);
   };
 
   return (
