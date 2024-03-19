@@ -7,16 +7,19 @@ import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
 import React from 'react';
 import Navbar from "./Navbar.tsx";
 import About from "./tab/about.tsx";
+import HomePage from './components/HomePage/HomePage.tsx';
 
 type AppProps = {
   signOut?: UseAuthenticator["signOut"]; //() => void;
   user?: AuthUser;
 };
 
-const App: React.FC<AppProps> = ({signOut, user}) => {
+// const App: React.FC<AppProps> = ({signOut, user}) => {
+  const App: React.FC<AppProps> = () => {
+
   return (
     <Router>
-      <div className="nav">
+      {/* <div className="nav">
       <Navbar />
         <ul>
           <li>Hello, <a href="#">{user?.username}</a></li>
@@ -32,7 +35,8 @@ const App: React.FC<AppProps> = ({signOut, user}) => {
             <UploadPage />
           </Route>
         </Switch>
-      </div>
+      </div> */}
+      <HomePage />
     </Router>
   )
 }

@@ -1,0 +1,28 @@
+.root {
+    --bgColor : #155EEF;
+}
+
+.container-class {
+    padding : 0px;
+    background-color: #EFF4F8;
+}
+
+.image-logo {
+    width : 20%;
+    height: 40%;
+    margin: 20px;
+}
+
+.side-menu {
+    font-size: 16px;
+    font-weight: 450;
+}
+
+.login :link{
+    color : var(--bgColor);
+    text-decoration: none;
+
+}
+.login:hover {
+    color : var(--bgColor);
+}
