@@ -153,9 +153,6 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
 
   return (
     <div className="Example">
-      <header>
-        <h1>react-pdf sample page</h1>
-      </header>
       <div onMouseUp={handleMouseUp} className={selectedText != "" ? "Example__container_1" : "Example__container"}>
         <div className="Example__container__document" ref={setContainerRef}>
           <Document file={props.file} 

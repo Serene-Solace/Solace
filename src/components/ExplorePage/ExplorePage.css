@@ -1,0 +1,64 @@
+.upload-page-banner-image {
+    height : 18vh;
+    width : 70vw;
+}
+
+.upload-container {
+    height: 338px;
+    width: 526px;
+  }
+  
+.upload-container .rectangle {
+    background: linear-gradient(
+        180deg,
+        rgba(245.32, 252.39, 253.94, 0.3) 0%,
+        rgba(215, 219, 226, 0.3) 30.5%,
+        rgba(162.07, 214.09, 230.52, 0.3) 54%,
+        rgba(105.91, 255, 237.11, 0.3) 100%
+    );
+    border: 1px solid;
+    border-color: #000000;
+    border-style: dashed;
+    border-radius: 45px;
+    height: 338px;
+    width: 526px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.button-plus {
+    background-color: #155eef;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: block;
+    align-content: center;
+    padding: 8px 0px 0px 8px;
+    margin-bottom: 20px;
+}
+
+.button-plus:hover {
+    background-color:#002ead;
+    transition: 0.7s;
+}
+
+.button-material-ui-explore-now {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #155EEF;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    min-height: 26px; 
+    min-width: 150px;
+    align-items: center;
+}
+
+.button-material-ui-explore-now:hover {
+    background-color:#002ead;
+    transition: 0.7s;
+}
