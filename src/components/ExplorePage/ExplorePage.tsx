@@ -10,11 +10,12 @@ import PDFViewer from '../../tab/pdfViewer';
 
 const ExplorePage: React.FC = () => {
 
-  const [pdfFile, setPdfFile] = useState(undefined);
+  const [pdfFile, setPdfFile] = useState<File | undefined>(undefined);
   const [pdfFileURL, setPdfFileURL] = useState<string | null>(null);
   const [isUploadSuccessful, setIsUploadSuccessful] = useState(false);
 
   useEffect(() => {
+    console.log(pdfFile);
     if (pdfFile) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -53,7 +54,7 @@ const ExplorePage: React.FC = () => {
                     alignContent={'center'}
                     direction={'column'}>
                     <PlusButton setPdfFile={setPdfFile} />
-                    <Content />
+                    <Content isFileUploaded={pdfFile !== undefined} fileName={pdfFile === undefined ? '' : pdfFile.name} />
                   </Grid>
                 </div>
               </div>
