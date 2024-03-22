@@ -24,7 +24,7 @@ const resizeObserverOptions = {};
 const maxWidth = 800;
 
 type ChildProps = {
-  file: any
+  file: File | undefined
  }
 
 const PDFViewer: React.FC<ChildProps> = (props) => {
@@ -141,9 +141,11 @@ const PDFViewer: React.FC<ChildProps> = (props) => {
         },
         body: JSON.stringify({
           text: selectedText,
+          fileName: props.file?.name
         })
       });
       const data = await response.json();
+      console.log(data);
       setResult(data['body']['response']);
     } catch (error) {
       console.error('Error fetching data:', error);

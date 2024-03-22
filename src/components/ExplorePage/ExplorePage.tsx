@@ -15,7 +15,6 @@ const ExplorePage: React.FC = () => {
   const [isUploadSuccessful, setIsUploadSuccessful] = useState(false);
 
   useEffect(() => {
-    console.log(pdfFile);
     if (pdfFile) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -58,7 +57,7 @@ const ExplorePage: React.FC = () => {
                   </Grid>
                 </div>
               </div>
-              <UploadButton setIsUploadSuccessful={setIsUploadSuccessful} />
+              <UploadButton pdfFile={pdfFile} setIsUploadSuccessful={setIsUploadSuccessful} />
             </Grid>}
             {pdfFile != undefined &&
               <Grid md={6}>
