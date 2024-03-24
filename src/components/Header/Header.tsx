@@ -1,14 +1,26 @@
 import { Grid, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/logo/logo.svg';
 import './header.css';
 import { Link } from 'react-router-dom';
+import LoginPage from '../Authentication/LoginPage';
 
 type HeaderProps = {
     signOut: any;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
+
+    const [showLogin, setShowLogin] = useState(false);
+
+    const handleLoginClick = () => {
+        setShowLogin(true);
+    };
+
+    const handleCloseLogin = () => {
+        setShowLogin(false);
+    };
+
     return (
         <Grid container className={"container-class"}>
             <Grid item md={9}>
@@ -33,6 +45,10 @@ const Header: React.FC<HeaderProps> = (props) => {
                     <CustomLink to="/about">
                         <Typography> About Us </Typography>
                     </CustomLink>
+                </Grid>
+                <Grid item>
+                <Typography onClick={handleLoginClick}> Log In </Typography>
+                    {showLogin && <LoginPage onClose={handleCloseLogin} />}
                 </Grid>
                 <Grid item>
                     <a className={"login"} onClick={props.signOut}>
