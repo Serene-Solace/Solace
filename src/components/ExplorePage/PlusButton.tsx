@@ -3,6 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 type PlusButtonProps = {
   setPdfFile: any;
+  setPdfFileURL: any;
 };
 
 const PlusButton: React.FC<PlusButtonProps> = (props) => {
@@ -10,6 +11,13 @@ const PlusButton: React.FC<PlusButtonProps> = (props) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          props.setPdfFileURL(e.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
       props.setPdfFile(file);
     }
   };

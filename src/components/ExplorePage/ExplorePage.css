@@ -62,3 +62,17 @@
     background-color:#002ead;
     transition: 0.7s;
 }
+
+.rectangle {
+    background: linear-gradient(
+      180deg,
+      rgba(245.32, 252.39, 253.94, 0.3) 0%,
+      rgba(126.56, 151.14, 198.83, 0.3) 30.5%,
+      rgba(162.07, 214.09, 230.52, 0.3) 54%,
+      rgba(105.91, 255, 237.11, 0.3) 100%
+    );
+    display: inline-block;
+    border: 1px solid;
+    border-color: #000000;
+    border-radius: 45px;
+  }

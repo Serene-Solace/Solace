@@ -1,30 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Grid } from '@mui/material';
 import BannerUpload from '../../assets/images/Banner_Upload_Image.svg';
 import './ExplorePage.css';
 import PlusButton from './PlusButton';
 import Content from './Content';
 import UploadButton from './UploadButton';
-import PDFViewerSection from './PDFViewer';
-import PDFViewer from '../../tab/pdfViewer';
+import PDFViewerSection from './PDFViewerDefault';
+import PDFViewer from './PDFViewer';
 
 const ExplorePage: React.FC = () => {
 
   const [pdfFile, setPdfFile] = useState<File | undefined>(undefined);
-  const [pdfFileURL, setPdfFileURL] = useState<string | null>(null);
+  const [pdfFileURL, setPdfFileURL] = useState<string | undefined>(undefined);
   const [isUploadSuccessful, setIsUploadSuccessful] = useState(false);
-
-  useEffect(() => {
-    if (pdfFile) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target?.result) {
-          setPdfFileURL(e.target.result as string);
-        }
-      };
-      reader.readAsDataURL(pdfFile);
-    }
-  }, [pdfFile]);
 
   return (
     <>
@@ -52,14 +40,14 @@ const ExplorePage: React.FC = () => {
                     alignItems={'center'}
                     alignContent={'center'}
                     direction={'column'}>
-                    <PlusButton setPdfFile={setPdfFile} />
+                    <PlusButton setPdfFile={setPdfFile} setPdfFileURL={setPdfFileURL} />
                     <Content isFileUploaded={pdfFile !== undefined} fileName={pdfFile === undefined ? '' : pdfFile.name} />
                   </Grid>
                 </div>
               </div>
               <UploadButton pdfFile={pdfFile} setIsUploadSuccessful={setIsUploadSuccessful} />
             </Grid>}
-            {pdfFile != undefined &&
+            {pdfFileURL != undefined &&
               <Grid md={6}>
                 <PDFViewerSection pdfFileURL={pdfFileURL} />
               </Grid>}
