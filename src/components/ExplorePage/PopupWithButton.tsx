@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Toolbar from '../../tab/toolBar';
+import Toolbar from './ToolBar';
 import { View } from '@aws-amplify/ui-react';
 import './ExplorePage.css';
 
