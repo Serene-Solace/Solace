@@ -4,7 +4,7 @@ import { signIn } from 'aws-amplify/auth';
 
 interface LoginPopupProps {
     onClose: () => void;
-    setAuth: () => void;
+    setAuth: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const LoginPage: React.FC<LoginPopupProps> = ({setAuth, onClose}) => {

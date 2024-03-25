@@ -5,7 +5,7 @@ import About from "./tab/about.tsx";
 import HomePage from './components/HomePage/HomePage.tsx';
 import ExplorePage from './components/ExplorePage/ExplorePage.tsx';
 import Header from './components/Header/Header.tsx';
-import { WithAuthenticatorProps, withAuthenticator } from '@aws-amplify/ui-react';
+import { WithAuthenticatorProps } from '@aws-amplify/ui-react';
 
 const App: React.FC<WithAuthenticatorProps> = (data) => {
 
