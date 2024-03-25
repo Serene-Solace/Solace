@@ -33,4 +33,4 @@ const App: React.FC<WithAuthenticatorProps> = (data) => {
   )
 }
 
-export default withAuthenticator(App);
+export default App;

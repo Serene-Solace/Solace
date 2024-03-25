@@ -7,7 +7,7 @@ interface LoginPopupProps {
     setAuth: () => void;
 }
 
-const LoginPage: React.FC<LoginPopupProps> = ({setAuth, onClose}) => {
+const SignUpPage: React.FC<LoginPopupProps> = ({setAuth, onClose}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 

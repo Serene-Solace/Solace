@@ -4,6 +4,7 @@ import logo from '../../assets/logo/logo.svg';
 import './header.css';
 import { Link } from 'react-router-dom';
 import LoginPage from '../Authentication/LoginPage';
+import { signOut } from 'aws-amplify/auth';
 
 type HeaderProps = {
     signOut: any;
@@ -12,6 +13,7 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = (props) => {
 
     const [showLogin, setShowLogin] = useState(false);
+    const [isAuth, setAuth] = useState(false);
 
     const handleLoginClick = () => {
         setShowLogin(true);
@@ -20,6 +22,17 @@ const Header: React.FC<HeaderProps> = (props) => {
     const handleCloseLogin = () => {
         setShowLogin(false);
     };
+
+    const handleLogout = async () => {
+        try {
+            await signOut();
+            setAuth(false);
+            setShowLogin(false);
+            console.log("user is successfully logged out!!");
+        } catch (error) {
+            console.log('error signing out: ', error);
+        }
+    }
 
     return (
         <Grid container className={"container-class"}>
@@ -46,15 +59,16 @@ const Header: React.FC<HeaderProps> = (props) => {
                         <Typography> About Us </Typography>
                     </CustomLink>
                 </Grid>
-                <Grid item>
-                <Typography onClick={handleLoginClick}> Log In </Typography>
-                    {showLogin && <LoginPage onClose={handleCloseLogin} />}
-                </Grid>
-                <Grid item>
-                    <a className={"login"} onClick={props.signOut}>
-                        <Typography > Log Out </Typography>
-                    </a>
-                </Grid>
+                {isAuth ?
+                    <Grid item>
+                        <Typography onClick={handleLogout}> Log Out </Typography>
+                    </Grid>
+                                    :
+                    <Grid item>
+                        <Typography onClick={handleLoginClick}> Log In </Typography>
+                        {showLogin && <LoginPage setAuth={setAuth} onClose={handleCloseLogin} />}
+                    </Grid>
+                }
             </Grid>
         </Grid>
     );
