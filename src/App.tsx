@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import '@aws-amplify/ui-react/styles.css';
 import React from 'react';
-import About from "./About.tsx";
+import AboutPage from "./About.tsx";
 import HomePage from './components/HomePage/HomePage.tsx';
 import ExplorePage from './components/ExplorePage/ExplorePage.tsx';
 import Header from './components/Header/Header.tsx';
@@ -19,7 +19,7 @@ const App: React.FC = () => {
                 <HomePage />
               </Route>
               <Route exact path="/about">
-                <About />
+                <AboutPage />
               </Route>
               <Route path="/upload">
                 <ExplorePage />
