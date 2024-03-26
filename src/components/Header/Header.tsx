@@ -31,6 +31,7 @@ const Header: React.FC = () => {
 
     const handleCloseLogin = () => {
         setShowLogin(false);
+        setShowSignup(false);
     };
 
     const handleLogout = async () => {

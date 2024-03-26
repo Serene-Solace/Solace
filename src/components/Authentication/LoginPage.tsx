@@ -42,11 +42,11 @@ const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose})
                 <form>
                     <label>
                         Username:
-                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} required/>
                     </label>
                     <label>
                         Password:
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} required/>
                         <a href="#">Forgot Password?</a>
                     </label>
                     <Button
