@@ -16,8 +16,8 @@ const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose})
         e.preventDefault();
         try {
             const { isSignedIn } = await signIn({ username, password });
-            if(!isSignedIn)
-                throw new Exception("user is not able to signIn");
+            // if(!isSignedIn)
+            //     throw new ("user is not able to signIn");
             setAuth(isSignedIn);
             console.log("User is authenticated!!", isSignedIn);
         } catch (error) {

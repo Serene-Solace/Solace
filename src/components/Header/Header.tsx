@@ -19,7 +19,6 @@ const Header: React.FC<HeaderProps> = (props) => {
 
     const handleLoginClick = () => {
         setShowLogin(true);
-        console.log("User clicked on Login Button!!", showLogin);
     };
 
     const handleCloseLogin = () => {

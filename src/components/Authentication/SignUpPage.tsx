@@ -12,13 +12,14 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const [authCode, setAuthCode] = useState('')
+    const [confirmationCode, setAuthCode] = useState('')
     const [step, setStep] = useState(0)
 
-    const handleSignUp = async () => {
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         try {
             console.log("User is signing up!!");
-            const { isSignUpComplete } = await signUp({
+            const { isSignUpComplete, nextStep } = await signUp({
                 username,
                 password,
                 options: {
@@ -27,7 +28,9 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
                     }
                 }
             });
-            console.log(username);
+            console.log("username is ", username);
+            console.log("sign up complete?", isSignUpComplete);
+            console.log("next steps", nextStep);
             console.log("Successfully signed up!!, confirmation remaining....");
             setStep(1);
         } catch(error) {
@@ -36,9 +39,16 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
         }
     }
 
-    const handleConfirmSignUp = async () => {
+    const handleConfirmSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         try {
-            const { isSignUpComplete } = await confirmSignUp(username, authCode)
+            console.log(username);
+            console.log(confirmationCode);
+            // const { isSignUpComplete } = await confirmSignUp(username, authCode)
+            const { isSignUpComplete, nextStep } = await confirmSignUp({
+                username,
+                confirmationCode
+              });
             console.log("user successfully signed up", isSignUpComplete);
         } catch (error) {
             console.log("error confirming sign up!!", error);
@@ -79,7 +89,7 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
                             </label>
                             <label>
                                 Authentication Code:
-                                <input type="text" value={authCode} onChange={e => setAuthCode(e.target.value)} />
+                                <input type="text" value={confirmationCode} onChange={e => setAuthCode(e.target.value)} />
                             </label>
                             <button type="submit" onClick={ handleConfirmSignUp }>Confirm Sign Up</button>
                         </form>
