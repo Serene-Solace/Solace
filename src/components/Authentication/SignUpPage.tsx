@@ -53,6 +53,8 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
         } catch (error) {
             console.log("error confirming sign up!!", error);
         }
+        onClose();
+        setShowLogin()
     }
 
     const setShowLogin = async () => {
