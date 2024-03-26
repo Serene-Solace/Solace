@@ -1,48 +1,105 @@
 import React, { useState } from 'react';
 import './LoginPopup.css';
-import { signIn } from 'aws-amplify/auth';
+import { signUp, confirmSignUp } from 'aws-amplify/auth';
 
-interface LoginPopupProps {
+interface SignUpProps {
     onClose: () => void;
     setAuth: () => void;
+    setShowSignup: () => void;
 }
 
-const SignUpPage: React.FC<LoginPopupProps> = ({setAuth, onClose}) => {
+const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [confirmationCode, setAuthCode] = useState('')
+    const [step, setStep] = useState(0)
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { isSignedIn } = await signIn({ username, password });
-            setAuth(isSignedIn);
-            console.log("User is authenticated!!", isSignedIn);
-          } catch (error) {
-            console.log('error signing in', error);
-          }
+            console.log("User is signing up!!");
+            const { isSignUpComplete, nextStep } = await signUp({
+                username,
+                password,
+                options: {
+                    userAttributes: {
+                        email
+                    }
+                }
+            });
+            console.log("username is ", username);
+            console.log("sign up complete?", isSignUpComplete);
+            console.log("next steps", nextStep);
+            console.log("Successfully signed up!!, confirmation remaining....");
+            setStep(1);
+        } catch(error) {
+            console.log(username);
+            console.log("error message", error);
+        }
+    }
+
+    const handleConfirmSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            console.log(username);
+            console.log(confirmationCode);
+            // const { isSignUpComplete } = await confirmSignUp(username, authCode)
+            const { isSignUpComplete, nextStep } = await confirmSignUp({
+                username,
+                confirmationCode
+              });
+            console.log("user successfully signed up", isSignUpComplete);
+        } catch (error) {
+            console.log("error confirming sign up!!", error);
+        }
         onClose();
-    };
+        setShowLogin()
+    }
+
+    const setShowLogin = async () => {
+        setShowSignup(false);
+    }
 
     return (
         <div className="popup">
             <div className="popup-inner">
-                <h2>Solace | Login</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Username:
-                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-                    </label>
-                    <label>
-                        Password:
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                        <a href="#">Forgot Password?</a>
-                    </label>
-                    <button type="submit">Login</button><br></br>
-                    <a href='#'><span>Don't have an account? Sign up now!</span></a>
-                </form>
+                <h2>Solace | Sign Up</h2>
+                {
+                    (step === 0) ? (
+                        <form>
+                            <label>
+                                Username:
+                                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                            </label>
+                            <label>
+                                Password:
+                                <input type="text" value={password} onChange={e => setPassword(e.target.value)} />
+                            </label>
+                            <label>
+                                Email:
+                                <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+                            </label>
+                            <button type="submit" onClick={ handleSignUp }>Sign Up</button>
+                        </form>
+                    ) : (
+
+                        <form>
+                            <label>
+                                Username:
+                                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                            </label>
+                            <label>
+                                Authentication Code:
+                                <input type="text" value={confirmationCode} onChange={e => setAuthCode(e.target.value)} />
+                            </label>
+                            <button type="submit" onClick={ handleConfirmSignUp }>Confirm Sign Up</button>
+                        </form>
+                    )
+                }
             </div>
         </div>
     )
 }
 
-export default LoginPage;
+export default SignUpPage;

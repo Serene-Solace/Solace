@@ -4,6 +4,7 @@ import logo from '../../assets/logo/logo.svg';
 import './header.css';
 import { Link } from 'react-router-dom';
 import LoginPage from '../Authentication/LoginPage';
+import SignUpPage from '../Authentication/SignUpPage';
 import { signOut } from 'aws-amplify/auth';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -15,6 +16,7 @@ import InlineMessage from '../Authentication/InlineMessage';
 const Header: React.FC = () => {
 
     const [showLogin, setShowLogin] = useState<boolean>(false);
+    const [showSignup, setShowSignup] = useState(false);
     const [isAuth, setAuth] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
     const [isSignedOut, setIsSignedOut] = useState<boolean>(false);
@@ -94,7 +96,8 @@ const Header: React.FC = () => {
                         :
                         <Grid item>
                             <Typography onClick={handleLoginClick}> Sign In </Typography>
-                            {showLogin && <LoginPage setAuth={setAuth} onClose={handleCloseLogin} />}
+                            {showLogin && !showSignup && <LoginPage setShowSignup={setShowSignup} setAuth={setAuth} onClose={handleCloseLogin} />}
+                            {showLogin && showSignup && <SignUpPage setShowSignup={setShowSignup} setAuth={setAuth} onClose={handleCloseLogin} />}
                         </Grid>
                     }
                 </Grid>
