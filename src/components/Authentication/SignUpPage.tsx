@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './LoginPopup.css';
 import { signUp, confirmSignUp } from 'aws-amplify/auth';
+import AuthHeader from './AuthHeader';
 
 interface SignUpProps {
     onClose: () => void;
@@ -64,7 +65,7 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
     return (
         <div className="popup">
             <div className="popup-inner">
-                <h2>Solace | Sign Up</h2>
+                <AuthHeader authType="Sign Up" onClose={onClose}/>
                 {
                     (step === 0) ? (
                         <form>
@@ -83,7 +84,6 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
                             <button type="submit" onClick={ handleSignUp }>Sign Up</button>
                         </form>
                     ) : (
-
                         <form>
                             <label>
                                 Username:
