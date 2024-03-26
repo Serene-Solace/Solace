@@ -4,6 +4,7 @@ import logo from '../../assets/logo/logo.svg';
 import './header.css';
 import { Link } from 'react-router-dom';
 import LoginPage from '../Authentication/LoginPage';
+import SignUpPage from '../Authentication/SignUpPage';
 import { signOut } from 'aws-amplify/auth';
 
 type HeaderProps = {
@@ -13,10 +14,12 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = (props) => {
 
     const [showLogin, setShowLogin] = useState(false);
+    const [showSignup, setShowSignup] = useState(false);
     const [isAuth, setAuth] = useState(false);
 
     const handleLoginClick = () => {
         setShowLogin(true);
+        console.log("User clicked on Login Button!!", showLogin);
     };
 
     const handleCloseLogin = () => {
@@ -66,7 +69,8 @@ const Header: React.FC<HeaderProps> = (props) => {
                                     :
                     <Grid item>
                         <Typography onClick={handleLoginClick}> Log In </Typography>
-                        {showLogin && <LoginPage setAuth={setAuth} onClose={handleCloseLogin} />}
+                        {showLogin && !showSignup && <LoginPage setShowSignup={setShowSignup} setAuth={setAuth} onClose={handleCloseLogin} />}
+                        {showLogin && showSignup && <SignUpPage setShowSignup={setShowSignup} setAuth={setAuth} onClose={handleCloseLogin} />}
                     </Grid>
                 }
             </Grid>
