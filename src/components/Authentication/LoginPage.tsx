@@ -4,7 +4,7 @@ import { signIn } from 'aws-amplify/auth';
 
 interface LoginPopupProps {
     onClose: () => void;
-    setAuth: () => void;
+    setAuth: React.Dispatch<React.SetStateAction<boolean>>;
     setShowSignup: () => void;
 }
 
@@ -47,7 +47,7 @@ const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose})
                         <a href="#">Forgot Password?</a>
                     </label>
                     <button type="submit" onClick={handleSubmit}>Login</button><br></br>
-                    <a href='#' onClick={setShowSignup}><span>Don't have an account? Sign up now!</span></a>
+                    <a href='#' onClick={handleSignup}><span>Don't have an account? Sign up now!</span></a>
                 </form>
             </div>
         </div>
