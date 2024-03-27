@@ -40,6 +40,7 @@
     background-color: #EFF4F8;
     border: 1px solid #ccc;
     margin-bottom: 10px;
+    text-indent: 10px;
     }
     
     .popup-inner button[type="submit"] {

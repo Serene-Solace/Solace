@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './LoginPopup.css';
 import { signIn } from 'aws-amplify/auth';
+import { Button, Typography } from '@mui/material';
+import AuthHeader from './AuthHeader';
+
 
 interface LoginPopupProps {
     onClose: () => void;
@@ -35,19 +38,27 @@ const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose})
     return (
         <div className="popup">
             <div className="popup-inner">
-                <h2>Solace | Login</h2>
+                <AuthHeader authType="Sign In" onClose={onClose}/>
                 <form>
                     <label>
                         Username:
-                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} required/>
                     </label>
                     <label>
                         Password:
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} required/>
                         <a href="#">Forgot Password?</a>
                     </label>
-                    <button type="submit" onClick={handleSubmit}>Login</button><br></br>
-                    <a href='#' onClick={handleSignup}><span>Don't have an account? Sign up now!</span></a>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        sx={{ mt: 3, mb: 2 }}
+                        onClick={handleSubmit}
+                    >Sign In</Button>
+                    <Typography variant="h6" align="center">
+                        Don't have an account? <a href='#' onClick={handleSignup}>Sign up now!</a>
+                    </Typography>
                 </form>
             </div>
         </div>
