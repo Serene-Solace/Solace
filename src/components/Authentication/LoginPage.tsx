@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './LoginPopup.css';
 import { signIn } from 'aws-amplify/auth';
-import { Button, Typography } from '@mui/material';
+import { Button, IconButton, Typography } from '@mui/material';
 import AuthHeader from './AuthHeader';
+import google from '../../assets/logo/google.png';
 
 
 interface LoginPopupProps {
@@ -35,6 +36,10 @@ const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose})
         setShowSignup(true);
     }
 
+    const handleGoogleSignIn = () => {
+        console.log("Tried to login using google");
+    }
+
     return (
         <div className="popup">
             <div className="popup-inner">
@@ -57,6 +62,20 @@ const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose})
                     >Sign In</Button>
                     <Typography variant="h6" align="center">
                         Don't have an account? <a href='#' onClick={handleSignup}>Sign up now!</a>
+                    </Typography>
+                    <Typography variant='body1' align="center">
+                        or you can sign in with<br></br>
+                        <IconButton
+                            onClick={handleGoogleSignIn}
+                            aria-label="Google Sign In"
+                            sx={{
+                                '&:hover img': {
+                                    transform: 'scale(1.5)',
+                                },
+                            }}
+                        >
+                            <img src={google} alt="Google Logo" style={{ width: 16, height: 16 }}/>
+                        </IconButton>
                     </Typography>
                 </form>
             </div>
