@@ -8,7 +8,7 @@ import AuthHeader from './AuthHeader';
 interface LoginPopupProps {
     onClose: () => void;
     setAuth: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowSignup: () => void;
+    setShowSignup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose}) => {
@@ -39,7 +39,7 @@ const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose})
         <div className="popup">
             <div className="popup-inner">
                 <AuthHeader authType="Sign In" onClose={onClose}/>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label>
                         Username:
                         <input type="text" value={username} onChange={e => setUsername(e.target.value)} required/>
@@ -54,7 +54,6 @@ const LoginPage: React.FC<LoginPopupProps> = ({setShowSignup, setAuth, onClose})
                         variant="contained"
                         color="primary"
                         sx={{ mt: 3, mb: 2 }}
-                        onClick={handleSubmit}
                     >Sign In</Button>
                     <Typography variant="h6" align="center">
                         Don't have an account? <a href='#' onClick={handleSignup}>Sign up now!</a>
