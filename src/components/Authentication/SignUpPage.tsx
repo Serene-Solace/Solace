@@ -5,11 +5,10 @@ import AuthHeader from './AuthHeader';
 
 interface SignUpProps {
     onClose: () => void;
-    setAuth: () => void;
-    setShowSignup: () => void;
+    setShowSignup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) => {
+const SignUpPage: React.FC<SignUpProps> = ({setShowSignup, onClose}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
@@ -46,7 +45,7 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
             console.log(username);
             console.log(confirmationCode);
             // const { isSignUpComplete } = await confirmSignUp(username, authCode)
-            const { isSignUpComplete, nextStep } = await confirmSignUp({
+            const { isSignUpComplete } = await confirmSignUp({
                 username,
                 confirmationCode
               });
@@ -68,7 +67,7 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
                 <AuthHeader authType="Sign Up" onClose={onClose}/>
                 {
                     (step === 0) ? (
-                        <form>
+                        <form onSubmit={handleSignUp}>
                             <label>
                                 Username:
                                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
@@ -81,10 +80,10 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
                                 Email:
                                 <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
                             </label>
-                            <button type="submit" onClick={ handleSignUp }>Sign Up</button>
+                            <button type="submit">Sign Up</button>
                         </form>
                     ) : (
-                        <form>
+                        <form onSubmit={handleConfirmSignUp}>
                             <label>
                                 Username:
                                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
@@ -93,7 +92,7 @@ const SignUpPage: React.FC<SignUpProps> = ({setAuth, setShowSignup, onClose}) =>
                                 Authentication Code:
                                 <input type="text" value={confirmationCode} onChange={e => setAuthCode(e.target.value)} />
                             </label>
-                            <button type="submit" onClick={ handleConfirmSignUp }>Confirm Sign Up</button>
+                            <button type="submit">Confirm Sign Up</button>
                         </form>
                     )
                 }
